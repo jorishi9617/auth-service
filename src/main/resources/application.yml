@@ -1,0 +1,31 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: auth-service
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/video_platform?currentSchema=auth}
+    username: ${DATABASE_USER:video}
+    password: ${DATABASE_PASSWORD:video}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  flyway:
+    enabled: true
+    schemas: auth
+    default-schema: auth
+security:
+  local-test:
+    enabled: ${SECURITY_LOCAL_TEST_ENABLED:false}
+  jwt:
+    secret: ${JWT_SECRET}
+    expiration-seconds: ${JWT_EXPIRATION_SECONDS:900}
+app:
+  cors:
+    allowed-origins: ${FRONTEND_ORIGINS:http://localhost:3000,http://localhost:3001}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
