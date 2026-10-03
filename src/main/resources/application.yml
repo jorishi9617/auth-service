@@ -1,12 +1,12 @@
 server:
-  port: 8081
+  port: ${PORT:${SERVER_PORT:8081}}
 spring:
   application:
     name: auth-service
   datasource:
-    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/video_platform?currentSchema=auth}
-    username: ${DATABASE_USER:video}
-    password: ${DATABASE_PASSWORD:video}
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: validate
@@ -23,7 +23,7 @@ security:
     expiration-seconds: ${JWT_EXPIRATION_SECONDS:900}
 app:
   cors:
-    allowed-origins: ${FRONTEND_ORIGINS:http://localhost:3000,http://localhost:3001}
+    allowed-origins: ${FRONTEND_ORIGINS}
 management:
   endpoints:
     web:
