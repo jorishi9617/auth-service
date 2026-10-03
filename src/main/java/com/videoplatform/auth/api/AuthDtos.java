@@ -11,7 +11,7 @@ public final class AuthDtos {
 
     public record Credentials(
             @NotBlank @Email @Size(max = 320) String email,
-            @NotBlank @Size(min = 12, max = 128) String password) {}
+            @NotBlank String password) {}
 
     public record TokenResponse(String accessToken, String tokenType, long expiresInSeconds, UUID userId, String email) {}
 }
