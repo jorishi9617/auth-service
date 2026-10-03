@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
+import java.security.SecureRandom;
 import java.time.Instant;
 import java.util.Date;
 import java.util.UUID;
@@ -20,12 +21,18 @@ public class JwtService {
     public JwtService(
             @Value("${security.jwt.secret}") String secret,
             @Value("${security.jwt.expiration-seconds:900}") long expirationSeconds) {
-        byte[] bytes = Decoders.BASE64.decode(secret);
+        byte[] bytes = secret.isBlank() ? generateSecret() : Decoders.BASE64.decode(secret);
         if (bytes.length < 32) {
             throw new IllegalArgumentException("security.jwt.secret must decode to at least 32 bytes");
         }
         this.key = Keys.hmacShaKeyFor(bytes);
         this.expirationSeconds = expirationSeconds;
+    }
+
+    private static byte[] generateSecret() {
+        byte[] bytes = new byte[32];
+        new SecureRandom().nextBytes(bytes);
+        return bytes;
     }
 
     public String issue(UUID userId, String email) {
