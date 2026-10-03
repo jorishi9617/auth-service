@@ -1,0 +1,39 @@
+databases:
+  - name: auth-service-db
+    databaseName: auth_service
+    user: auth_service
+    plan: basic-256mb
+
+services:
+  - type: web
+    name: auth-service
+    runtime: docker
+    plan: free
+    autoDeployTrigger: commit
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: DATABASE_HOST
+        fromDatabase:
+          name: auth-service-db
+          property: host
+      - key: DATABASE_PORT
+        fromDatabase:
+          name: auth-service-db
+          property: port
+      - key: DATABASE_NAME
+        fromDatabase:
+          name: auth-service-db
+          property: database
+      - key: DATABASE_USER
+        fromDatabase:
+          name: auth-service-db
+          property: user
+      - key: DATABASE_PASSWORD
+        fromDatabase:
+          name: auth-service-db
+          property: password
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FRONTEND_ORIGINS
+        sync: false
