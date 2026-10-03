@@ -7,15 +7,7 @@ services:
     dockerfilePath: ./Dockerfile
     healthCheckPath: /actuator/health
     envVars:
-      - key: DATABASE_HOST
-        sync: false
-      - key: DATABASE_PORT
-        sync: false
-      - key: DATABASE_NAME
-        sync: false
-      - key: DATABASE_USER
-        sync: false
-      - key: DATABASE_PASSWORD
+      - key: DATABASE_URL
         sync: false
       - key: JWT_SECRET
         generateValue: true
