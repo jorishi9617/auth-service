@@ -2,7 +2,7 @@ databases:
   - name: auth-service-db
     databaseName: auth_service
     user: auth_service
-    plan: basic-256mb
+    plan: free
 
 services:
   - type: web
