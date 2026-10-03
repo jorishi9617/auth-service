@@ -7,7 +7,7 @@
     <version>1.0.0</version>
     <description>Authentication API service</description>
     <properties>
-        <java.version>25</java.version>
+        <java.version>23</java.version>
         <maven.compiler.release>${java.version}</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot.version>3.3.5</spring-boot.version>
