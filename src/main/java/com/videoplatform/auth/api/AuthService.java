@@ -2,7 +2,7 @@ package com.videoplatform.auth.api;
 
 import com.videoplatform.auth.user.UserAccount;
 import com.videoplatform.auth.user.UserRepository;
-import com.videoplatform.common.security.JwtService;
+import com.videoplatform.auth.security.JwtService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
